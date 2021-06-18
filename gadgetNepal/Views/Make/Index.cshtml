@@ -1,0 +1,53 @@
+﻿@model IEnumerable<gadgetNepal.Models.Make>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<br />
+<br />
+<hr />
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">
+            Makes of Gadgets
+        </h2>
+    </div>
+    <div class="col-6 text-right">
+        <a class="btn btn-info text-right" asp-action="Create"><i class="fas fa-mobile-alt"></i>&nbsp; Add new Gadget</a>
+    </div>
+    <br />
+    <br />
+
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m=>m.Name)
+            </th>
+            <th></th>
+        </tr>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(m=>item.Name)
+                </td>
+
+                <td class="text-right" >
+                    <div class="btn-group" role="group">
+                        <form method="post" action="Update">
+                            <button type="submit" class="btn btn-primary" asp-action="Edit" asp-route-id="@item.id"><i class="fas fa-edit"></i></button>
+                        </form>
+                        <form method="post" action="Delete">
+                            <button onclick="if (!confirm('Are you sure ? You want to deletet the item')){return false}" type="submit" class="btn btn-danger" asp-action="Delete" asp-route-id="@item.id"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </div>
+                </td>
+                    
+                </tr>
+        }
+    </table>
+</div>
+
